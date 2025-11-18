@@ -1,0 +1,20 @@
+[package]
+name = "yotquitas"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+
+[workspace]
+
+# We will tell cargo to look for our projects
+# inside a clean "levels" folder
+members = [
+    "levels/*",
+]
+
+# Optional: This tells all sub-projects to use the same
+# "target" (build) directory, which is much cleaner.
+[profile.release]
+lto = true
+codegen-units = 1
