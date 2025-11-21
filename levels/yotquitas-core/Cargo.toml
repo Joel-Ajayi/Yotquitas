@@ -1,6 +1,31 @@
 [package]
 name = "yotquitas-core"
 version = "0.1.0"
-edition = "2024"
+edition = "2021"
+description = "Core library for Yotquitas blockchain providing foundational data structures, cryptographic primitives, and transaction handling."
+authors = ["Ajayi Ayotunde Joel"]
+license = "MIT OR Apache-2.0"
+readme = "README.md"
+repository = "https://github.com/Joel-Ajayi/yotquitas/levels/yotquitas-core"
+homepage = "https://github.com/Joel-Ajayi/yotquitas"
+keywords = ["blockchain", "cryptocurrency", "ed25519", "transaction", "block", "crypto"]
+categories = ["cryptography", "algorithms", "web-programming"]
+exclude = [
+    "/.git",
+    "/.gitignore",
+    "/tests",
+    "/examples",
+    "/.github",
+]
 
 [dependencies]
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+sha2 = "0.10"
+ed25519-dalek = { version = "2.1", features = ["rand_core"] }
+hex = "0.4"
+rand = "0.8"
+
+[dev-dependencies]
+tempfile = "3.8"
+
