@@ -8,7 +8,7 @@ license = "MIT"
 readme = "README.md"
 repository = "https://github.com/Joel-Ajayi/yotquitas/levels/yotquitas-core"
 homepage = "https://github.com/Joel-Ajayi/yotquitas"
-keywords = ["blockchain", "cryptocurrency", "ed25519", "transaction", "block", "crypto"]
+keywords = ["blockchain", "ed25519", "transaction", "block", "crypto"]
 categories = ["cryptography", "algorithms", "web-programming"]
 exclude = [
     "/.git",
