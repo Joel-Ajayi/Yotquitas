@@ -1,0 +1,20 @@
+# Development Configuration for Yotquitas Node
+
+[network]
+chain_id = 1337
+network_id = 1337
+
+[node]
+data_dir = "./data"
+rpc_addr = "0.0.0.0:8545"
+rpc_cors = ["*"]
+
+[genesis]
+treasury_address = "0000000000000000000000000000000000000000000000000000000000000000"
+initial_supply = 1000000000000000000  # 1 billion AEQ (with 9 decimals)
+
+[logging]
+level = "info"
+
+
+

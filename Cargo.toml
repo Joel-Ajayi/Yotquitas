@@ -3,7 +3,7 @@
 # We will tell cargo to look for our projects
 # inside a clean "levels" folder
 members = [
-    "levels/*",
+    "levels/yotquitas-node",
 ]
 
 # Optional: This tells all sub-projects to use the same

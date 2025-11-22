@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  yotquitas-node:
+    build:
+      context: ../..  # Workspace root
+      dockerfile: levels/yotquitas-node/Dockerfile
+    container_name: yotquitas-node
+    ports:
+      - "8545:8545"
+    volumes:
+      - node-data:/app/data
+      - ./config:/app/config:ro
+    restart: unless-stopped
+    environment:
+      - RUST_LOG=info
+    command: ["./yotquitas-node", "--config-type", "dev"]
+
+volumes:
+  node-data:
+
+
+
