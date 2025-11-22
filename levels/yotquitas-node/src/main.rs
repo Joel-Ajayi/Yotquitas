@@ -1,7 +1,8 @@
 use anyhow::Result;
 use clap::Parser;
 use serde::Deserialize;
-use std::sync::Arc;
+use std::env;
+use std::{path::Path, sync::Arc};
 
 mod api;
 mod genesis;
@@ -56,9 +57,27 @@ struct Args {
 
 /// Load configuration from TOML file
 fn load_config(config_type: &str) -> Result<Config> {
-    let config_path = format!("config/{}.toml", config_type);
+    // Convert the string to a Path object
+    let parent = if let Some(parent) = Path::new(file!()).parent() {
+        let ancestor = if let Some(parent) = parent.parent() {
+            parent
+        } else {
+            anyhow::bail!("Config directory not found. Please run from workspace root or yotquitas-node directory")
+        };
+        ancestor
+    } else {
+        anyhow::bail!("Config directory not found. Please run from workspace root or yotquitas-node directory")
+    };
+
+    // Try relative to current directory first, then workspace-relative
+    let config_path = if let Some(parent) = parent.parent() {
+        parent.join("config").join(format!("{}.toml", config_type))
+    } else {
+        anyhow::bail!("Config directory not found. Please run from workspace root or yotquitas-node directory")
+    };
+
     let config_content = std::fs::read_to_string(&config_path)
-        .map_err(|e| anyhow::anyhow!("Failed to read config file {}: {}", config_path, e))?;
+        .map_err(|e| anyhow::anyhow!("Failed to read config file {:?}: {}", config_path, e))?;
 
     let config: Config = toml::from_str(&config_content)
         .map_err(|e| anyhow::anyhow!("Failed to parse config file: {}", e))?;

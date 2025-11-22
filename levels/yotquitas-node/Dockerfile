@@ -7,6 +7,7 @@ WORKDIR /app
 # Copy both packages (needed for path dependencies)
 COPY levels/yotquitas-core ./levels/yotquitas-core
 COPY levels/yotquitas-node ./levels/yotquitas-node
+COPY levels/config ./levels/config
 
 # Build the node
 WORKDIR /app/levels/yotquitas-node
@@ -26,7 +27,7 @@ WORKDIR /app
 COPY --from=builder /app/target/release/yotquitas-node /app/yotquitas-node
 
 # Copy config files
-COPY --from=builder /app/levels/yotquitas-node/config /app/config
+COPY --from=builder /app/levels/config /app/config
 
 # Create data directory
 RUN mkdir -p /app/data
